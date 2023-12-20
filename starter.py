@@ -22,7 +22,10 @@ service_context = ServiceContext.from_defaults(llm=llm)
 if not os.path.exists(INDEX_STORAGE_PATH):
     # load the documents and create the index
     documents = SimpleDirectoryReader("data").load_data()
-    index = VectorStoreIndex.from_documents(documents, show_progress=True)
+    index = VectorStoreIndex.from_documents(
+        documents,
+        service_context=service_context,
+        show_progress=True)
     # store it for later
     index.storage_context.persist(persist_dir=INDEX_STORAGE_PATH)
 else:

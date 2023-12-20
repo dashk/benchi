@@ -8,3 +8,7 @@ clean:
 run:
 	@echo "Running..."
 	@python starter.py
+
+lint:
+	@echo "Linting..."
+	@pre-commit run --all-files
